@@ -19,7 +19,9 @@ if [ ! -d "$(dirname "$common_functions")" ]; then
   git submodule update --init --recursive"
   exit 1
 elif [ ! -x "$common_functions" ]; then
-  git submodule update --init --recursive
+  temp_dir="$PWD"
+  cd "$SCRIPT_DIR" && git submodule update --init --recursive
+  cd "$temp_dir"
 fi
 # shellcheck source=/dev/null
 source "$common_functions"
